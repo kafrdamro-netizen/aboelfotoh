@@ -1,90 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>منصة احترافية</title>
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-
-<style>
-body{
-    font-family:Arial;
-    background:#0b1a2f;
-    color:white;
-    text-align:center;
-}
-.hidden{display:none}
-.video{margin:20px auto;width:300px}
-iframe{width:100%}
-.btn{padding:10px 20px;background:#4da3ff;border:none;color:white;cursor:pointer}
-</style>
+  <meta charset="UTF-8">
+  <title>موقعي</title>
 </head>
-
 <body>
-
-<h1>منصتي التعليمية 🔥</h1>
-
-<!-- Login -->
-<div id="auth">
-    <input id="email" placeholder="email"><br><br>
-    <input id="pass" type="password" placeholder="password"><br><br>
-
-    <button class="btn" onclick="signup()">تسجيل حساب</button>
-    <button class="btn" onclick="login()">تسجيل دخول</button>
-</div>
-
-<!-- Content -->
-<div id="content" class="hidden">
-
-    <h2>الفيديوهات 🔒</h2>
-
-    <div id="videos" class="hidden">
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>
-        </div>
-    </div>
-
-    <button class="btn" onclick="subscribe()">اشترك لفتح الفيديو</button>
-    <br><br>
-    <button onclick="logout()">تسجيل خروج</button>
-
-</div>
-
-<script>
-// 🔴 حط بيانات Firebase هنا
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-};
-
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
-function signup(){
-    auth.createUserWithEmailAndPassword(email.value, pass.value)
-    .then(()=>alert("تم إنشاء الحساب"))
-}
-
-function login(){
-    auth.signInWithEmailAndPassword(email.value, pass.value)
-    .then(()=>{
-        authBox.style.display="none";
-        content.classList.remove("hidden");
-    })
-}
-
-function logout(){
-    auth.signOut();
-    location.reload();
-}
-
-// اشتراك تجريبي
-function subscribe(){
-    document.getElementById("videos").classList.remove("hidden");
-    alert("تم فتح الفيديوهات 🎉");
-}
-</script>
-
+  <h1>أهلاً بك في موقعي يا مصطفى 🚀</h1>
+  <p>ده أول موقع ليا على GitHub Pages</p>
 </body>
 </html>
