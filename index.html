@@ -56,8 +56,12 @@ iframe{width:100%}
 const firebaseConfig = {
   apiKey: "AIzaSyAdL7r-aZJVVP5PFapKAgjLkLWYfxbr4ZU",
   authDomain: "stage-934c4.firebaseapp.com",
+  projectId: "stage-934c4",
 };
 
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+</script>
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
