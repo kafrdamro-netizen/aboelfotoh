@@ -57,48 +57,45 @@ iframe{width:100%}
 function test(){
     alert("Firebase شغال 🔥");
 }
-</script>
-<script>
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+</script><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAdL7r-aZJVVP5PFapKAgjLkLWYfxbr4ZU",
+  apiKey: "AIzaSy...",
   authDomain: "stage-934c4.firebaseapp.com",
-  databaseURL: "https://stage-934c4-default-rtdb.firebaseio.com",
   projectId: "stage-934c4",
-  storageBucket: "stage-934c4.firebasestorage.app",
-  messagingSenderId: "994337495782",
-  appId: "1:994337495782:web:89502cbf25abde3d703927",
-  measurementId: "G-ZKBD66PV0M"
+  appId: "1:994337495782:web:89502cbf25abde3d703927"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
 
-function signup(){
-    auth.createUserWithEmailAndPassword(email.value, pass.value)
+const email = document.getElementById("email");
+const pass = document.getElementById("pass");
+const authBox = document.getElementById("auth");
+const content = document.getElementById("content");
+
+window.signup = function(){
+    createUserWithEmailAndPassword(auth, email.value, pass.value)
     .then(()=>alert("تم إنشاء الحساب"))
+    .catch(err=>alert(err.message));
 }
 
-function login(){
-    auth.signInWithEmailAndPassword(email.value, pass.value)
+window.login = function(){
+    signInWithEmailAndPassword(auth, email.value, pass.value)
     .then(()=>{
         authBox.style.display="none";
         content.classList.remove("hidden");
     })
+    .catch(err=>alert(err.message));
 }
 
-function logout(){
-    auth.signOut();
+window.logout = function(){
+    signOut(auth);
     location.reload();
 }
+</script>
 
 // اشتراك تجريبي
 function subscribe(){
