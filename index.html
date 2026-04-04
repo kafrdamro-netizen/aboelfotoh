@@ -1,12 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
 <title>منصة احترافية</title>
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 
 <style>
 body{
@@ -17,8 +13,19 @@ body{
 }
 .hidden{display:none}
 .video{margin:20px auto;width:300px}
-iframe{width:100%}
-.btn{padding:10px 20px;background:#4da3ff;border:none;color:white;cursor:pointer}
+iframe{width:100%;height:200px}
+.btn{
+    padding:10px 20px;
+    background:#4da3ff;
+    border:none;
+    color:white;
+    cursor:pointer;
+    margin:5px;
+}
+input{
+    padding:10px;
+    width:200px;
+}
 </style>
 </head>
 
@@ -26,7 +33,7 @@ iframe{width:100%}
 
 <h1>منصتي التعليمية 🔥</h1>
 
-<!-- Login -->
+<!-- تسجيل / دخول -->
 <div id="auth">
     <input id="email" placeholder="email"><br><br>
     <input id="pass" type="password" placeholder="password"><br><br>
@@ -35,70 +42,93 @@ iframe{width:100%}
     <button class="btn" onclick="login()">تسجيل دخول</button>
 </div>
 
-<!-- Content -->
+<!-- المحتوى -->
 <div id="content" class="hidden">
 
     <h2>الفيديوهات 🔒</h2>
 
     <div id="videos" class="hidden">
         <div class="video">
-            <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>
+            <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" allowfullscreen></iframe>
         </div>
     </div>
 
     <button class="btn" onclick="subscribe()">اشترك لفتح الفيديو</button>
     <br><br>
-    <button onclick="logout()">تسجيل خروج</button>
+    <button class="btn" onclick="logout()">تسجيل خروج</button>
 
 </div>
-<button onclick="test()">اختبار</button>
 
-<script>
-function test(){
-    alert("Firebase شغال 🔥");
-}
-</script><script type="module">
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+// 🔥 بيانات Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSy...",
+  apiKey: "AIzaSyAdL7r-aZJVVP5PFapKAgjLkLWYfxbr4ZU",
   authDomain: "stage-934c4.firebaseapp.com",
   projectId: "stage-934c4",
+  storageBucket: "stage-934c4.appspot.com",
+  messagingSenderId: "994337495782",
   appId: "1:994337495782:web:89502cbf25abde3d703927"
 };
 
+// تشغيل Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// عناصر الصفحة
 const email = document.getElementById("email");
 const pass = document.getElementById("pass");
 const authBox = document.getElementById("auth");
 const content = document.getElementById("content");
 
+// تسجيل حساب
 window.signup = function(){
     createUserWithEmailAndPassword(auth, email.value, pass.value)
-    .then(()=>alert("تم إنشاء الحساب"))
-    .catch(err=>alert(err.message));
+    .then(()=>{
+        alert("تم إنشاء الحساب 🎉");
+    })
+    .catch(err=>{
+        alert(err.message);
+    });
 }
 
+// تسجيل دخول
 window.login = function(){
     signInWithEmailAndPassword(auth, email.value, pass.value)
     .then(()=>{
-        authBox.style.display="none";
-        content.classList.remove("hidden");
+        alert("تم تسجيل الدخول ✅");
     })
-    .catch(err=>alert(err.message));
+    .catch(err=>{
+        alert(err.message);
+    });
 }
 
+// تسجيل خروج
 window.logout = function(){
     signOut(auth);
-    location.reload();
 }
-</script>
+
+// متابعة حالة المستخدم
+onAuthStateChanged(auth, user => {
+    if(user){
+        authBox.style.display="none";
+        content.classList.remove("hidden");
+    }else{
+        authBox.style.display="block";
+        content.classList.add("hidden");
+    }
+});
 
 // اشتراك تجريبي
-function subscribe(){
+window.subscribe = function(){
     document.getElementById("videos").classList.remove("hidden");
     alert("تم فتح الفيديوهات 🎉");
 }
