@@ -59,8 +59,8 @@ const firebaseConfig = {
   authDomain: "stage-934c4.firebaseapp.com",
 };
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 function signup(){
     auth.createUserWithEmailAndPassword(email.value, pass.value)
