@@ -172,6 +172,25 @@ window.subscribe = function(){
     document.getElementById("videos").classList.remove("hidden");
     alert("تم فتح الفيديوهات 🎉");
 }
+    async function updateVisitorCount(){
+    const ref = doc(db, "site", "counter");
+
+    const snap = await getDoc(ref);
+
+    if(snap.exists()){
+        // زيادة العدد
+        await updateDoc(ref, {
+            count: increment(1)
+        });
+
+        document.getElementById("visitors").innerText = snap.data().count + 1;
+    }else{
+        // أول مرة
+        await setDoc(ref, { count: 1 });
+        document.getElementById("visitors").innerText = 1;
+    }
+            }
+    updateVisitorCount();
 </script>
 
 </body>
