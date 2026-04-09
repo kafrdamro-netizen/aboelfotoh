@@ -116,6 +116,7 @@ const firebaseConfig = {
   storageBucket: "stage-934c4.appspot.com",
   messagingSenderId: "994337495782",
   appId: "1:994337495782:web:89502cbf25abde3d703927"
+    const db = getFirestore(app);
 };
 
 // تشغيل Firebase
@@ -127,7 +128,7 @@ const email = document.getElementById("email");
 const pass = document.getElementById("pass");
 const authBox = document.getElementById("auth");
 const content = document.getElementById("content");
-const db = getFirestore(app);
+
 // تسجيل حساب
 window.signup = function(){
     createUserWithEmailAndPassword(auth, email.value, pass.value)
