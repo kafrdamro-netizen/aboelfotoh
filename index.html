@@ -121,13 +121,13 @@ const firebaseConfig = {
 // تشغيل Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+
 // عناصر الصفحة
 const email = document.getElementById("email");
 const pass = document.getElementById("pass");
 const authBox = document.getElementById("auth");
 const content = document.getElementById("content");
-
+const db = getFirestore(app);
 // تسجيل حساب
 window.signup = function(){
     createUserWithEmailAndPassword(auth, email.value, pass.value)
